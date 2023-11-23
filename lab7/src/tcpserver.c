@@ -7,8 +7,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#define SERV_PORT 10050
-#define BUFSIZE 100
+#define SERV_PORT 10055
+//#define BUFSIZE 100
 #define SADDR struct sockaddr
 
 int main() {
@@ -16,7 +16,7 @@ int main() {
 
   int lfd, cfd;
   int nread;
-  char buf[BUFSIZE];
+  char buf[100];
   struct sockaddr_in servaddr;
   struct sockaddr_in cliaddr;
 
@@ -49,7 +49,7 @@ int main() {
     }
     printf("connection established\n");
 
-    while ((nread = read(cfd, buf, BUFSIZE)) > 0) {
+    while ((nread = read(cfd, buf, 100)) > 0) {
       write(1, &buf, nread);
     }
 
